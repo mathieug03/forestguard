@@ -1,0 +1,5 @@
+inference-sdk
+inference
+supervision
+eel
+opencv-python
