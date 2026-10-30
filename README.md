@@ -8,24 +8,26 @@ Built for **AVEVA EcoTech Emerge**, where our team reached the **top 10**.
 
 ## The prototype
 
-Two small, independent components demonstrate the idea:
+Two independent components demonstrate the idea:
 
 - **Image detection:** select an image file or URL, call a hosted Roboflow model, and display annotated detections.
 - **Map dashboard:** add coordinates and a message from a Python interface to a Leaflet map through Eel.
 
-The research and pitch explored a broader system combining satellite imagery, weather, and risk prediction. This repository contains the original proof of concept: **it does not implement that complete pipeline**, train a new model, or automatically locate an image detection on the map.
+The broader concept combines satellite imagery, weather data, and risk prediction. This prototype demonstrates image detection and manual map updates; the full monitoring pipeline remained a proposed next step.
 
-## From the original demonstration
+We also explored a local YOLO-based detector as an alternative to Roboflow. Reliable wildfire detection would have required substantial fine-tuning on a dedicated, annotated dataset, so this approach remained experimental.
+
+## Demo screenshots
 
 ![Detection output from our recorded prototype demo](docs/images/detection.jpg)
 
 ![Map dashboard from our recorded prototype demo](docs/images/dashboard.jpg)
 
-These are frames extracted from the team's January 2025 project video, rather than a new benchmark. [Watch a short detection excerpt](docs/demo-detection.mp4). The concept image comes from our original presentation and describes the proposed architecture.
+Screenshots are from the team's January 2025 demonstration. The concept image comes from the competition presentation.
 
 ## Run locally
 
-The original prototype used Python 3.12, Tkinter, and Chrome for the Eel window.
+The prototype uses Python 3.12, Tkinter, and Chrome for the Eel window.
 
 ```bash
 python3.12 -m venv .venv
@@ -35,7 +37,7 @@ export ROBOFLOW_API_KEY="your-own-key"
 python detector.py
 ```
 
-The detector uses the original hosted model ID. Availability and model access depend on the service and your own credentials. There are no bundled model weights or training data.
+The detector uses a hosted Roboflow model and requires your own credentials and model access.
 
 For the independent map demo:
 
@@ -44,12 +46,8 @@ cd dashboard
 python main.py
 ```
 
-Internet access is needed for inference and map assets. The Paris and Los Angeles markers are demonstration coordinates, not live incidents. `experiments/webcam.py` is a separate generic object-detection experiment, not a trained wildfire webcam detector.
+Internet access is needed for inference and map assets. The Paris and Los Angeles markers are demonstration coordinates. `experiments/webcam.py` contains the generic local YOLO experiment; wildfire-specific weights and training data are not included.
 
-## Team and archive notes
+## Team
 
-Mathieu Gautier, Daouda Keita, and Farhan Zaveri, CentraleSupelec. This is a team project, not a claim of sole authorship.
-
-The public copy preserves the prototype's application behavior. Packaging adds documentation, dependency names, and extracts from the existing presentation/video. The embedded API key was replaced with an environment-variable lookup. Unrelated scratch work, full decks containing contact information, and credentials are excluded.
-
-Roboflow supplies the hosted inference/model; Eel bridges Python and JavaScript; Leaflet displays the map. Esri/Maxar/Earthstar imagery attribution is retained in the dashboard. Third-party services, model outputs, and imagery retain their respective rights. No new license is asserted over team or third-party material.
+Mathieu Gautier, Daouda Keita, and Farhan Zaveri.
